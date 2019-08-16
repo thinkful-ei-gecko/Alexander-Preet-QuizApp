@@ -16,6 +16,10 @@
 .question {}
 .questionText {}
 
+.answer{}
+.rightAnswer{}
+.wrongAnswer{}
+
 /* These all replace each other in the DOM when progressing through questions*/
 .submitButton {}
 .nextButton{}
