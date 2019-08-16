@@ -13,7 +13,7 @@
 * @constant
 */
 const morbidQuestions = [
-  /**
+  /*
    * @property {String} question  The text of the question. 
    * @property {String} correctAnswer The text of the correct answer.
    * @property {Array} answers An array containing five options per question, including the correct answer as this.correctAnswer.
