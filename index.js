@@ -1,23 +1,32 @@
 'use strict'
 
+const questionNum = 0;
+
 //start quiz
 function startQuiz(){
-    $('.quizStart').on('click', '.startButton' (event => {
-        ('.quizStart').remove('.quizStart');nextQuestion();
-    }));
+  $('.quizStart').on('click', (event => {
+    console.log('I am working!');
+    // $('.quizStart').remove();
+    // nextQuestion();
+  }));
 }
-console.log(nextQuestion("test"));
 
-//generate questions
-function generateQuestions(){
-
+//generate question
+function generateQuestion(){
+  const questionData = morbidQuestions[questionNum];
+  let questionHtml = `
+    <section class="section">
+        <p>${questionData.question}</p>
+    </section>
+  `;
 }
+
 
 //next question
 function nextQuestion(){
-    return 'foo';
-    const questionNum = 0;
-    //const question = morbidQuestions.question[i];
+    const question = generateQuestion();
+    ++questionNum;
+    return question;
 }
 
 //check if answer is correct/incorrect
@@ -56,4 +65,6 @@ function renderResults(){
 function restartQuiz(){
 
 }
+
+$(startQuiz());
 
