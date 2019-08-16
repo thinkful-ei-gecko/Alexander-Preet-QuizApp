@@ -1,0 +1,11 @@
+/* Resets the quiz */
+.resetButton {}
+
+.quizAbout{}
+
+.quizStart{}
+.startButton{}
+
+/* In footer, span containing dynamic numbers. */
+.questionScore{}
+.questionNumber{}
