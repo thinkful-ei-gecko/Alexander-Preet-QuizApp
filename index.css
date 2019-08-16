@@ -9,3 +9,6 @@
 /* In footer, span containing dynamic numbers. */
 .questionScore{}
 .questionNumber{}
+
+.question {}
+.submitButton {}
