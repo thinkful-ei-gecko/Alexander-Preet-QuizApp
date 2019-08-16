@@ -1,9 +1,12 @@
 /* Resets the quiz */
 .resetButton {}
 
+/* Copy w/o questions in main */
 .quizAbout{}
-
 .quizStart{}
+.quizResults{}
+
+
 .startButton{}
 
 /* In footer, span containing dynamic numbers. */
@@ -11,4 +14,9 @@
 .questionNumber{}
 
 .question {}
+.questionText {}
+
+/* These all replace each other in the DOM when progressing through questions*/
 .submitButton {}
+.nextButton{}
+.endButton{}
