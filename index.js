@@ -1,33 +1,50 @@
 'use strict'
 
-const questionNum = 0;
+//This should probably be in a function later.
+let questionNum = 0;
 
-//start quiz
+//Shuffles an array
+function shuffle(array){
+  
+}
+
+//Start quiz, set questionNum, retrieve first question.
 function startQuiz(){
-  $('.quizStart').on('click', (event => {
-    console.log('I am working!');
-    // $('.quizStart').remove();
-    // nextQuestion();
+  $('.startButton').on('click', (event => {
+    $('.quizStart, .quizAbout').remove();
+    nextQuestion(questionNum);
   }));
 }
 
-//generate question
-function generateQuestion(){
-  const questionData = morbidQuestions[questionNum];
-  let questionHtml = `
-    <section class="section">
-        <p>${questionData.question}</p>
+//Generate question, a callback function for nextQuestion().
+function generateQuestionHtml(number){
+  let questionData = '';
+  questionData = morbidQuestions[number];
+  generateAnswerHtml(questionData.answers);
+  return `
+    <section class="question">
+        <p class="questionText">${questionData.question}</p>
     </section>
   `;
 }
 
+function generateAnswerHtml(answerArr){
+  shuffle(answerArr);
+  answerArr.forEach((answer )=> console.log(answer));
+}
 
 //next question
 function nextQuestion(){
-    const question = generateQuestion();
-    ++questionNum;
-    return question;
+  let question = generateQuestionHtml(questionNum);
+  $('main').append(question);
+  ++questionNum;
+  return question;
+  console.log(questionNum);
 }
+
+$('nextButton').click(event => {
+  nextQuestion();
+});
 
 //check if answer is correct/incorrect
 function userAnswerCorrect(){
@@ -38,12 +55,9 @@ function userAnswerIncorrect(){
 
 }
 
-//update score and question number
+//update score
 function updateScore(){
-
-}
-
-function updateQuestionNumber(){
+  let score = 0;
 
 }
 

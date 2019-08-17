@@ -1,5 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+header {
+    border-bottom: 1px solid;
+    display: flex;
+}
+
 /* Resets the quiz */
-.resetButton {}
+.resetButton {
+
+}
 
 /* Copy w/o questions in main */
 .quizAbout{}
@@ -8,9 +19,11 @@
 
 .startButton{}
 
+.score {}
 /* In footer, span containing dynamic numbers. */
 .questionScore{}
 .questionNumber{}
+
 
 .question {}
 .questionText {}
@@ -23,3 +36,7 @@
 .submitButton {}
 .nextButton{}
 .endButton{}
+
+.hidden {
+    display: none;
+}
