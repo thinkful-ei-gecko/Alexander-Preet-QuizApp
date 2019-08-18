@@ -1,4 +1,4 @@
-'use strict'
+'use strict' //singh changes
 
 //This should probably be in a function later.
 let questionNum = 0;
@@ -10,7 +10,7 @@ let questionNum = 0;
 * that of a random remaining index (randomIndex), and then replacing that index's
 * value with the stored one.
 */
-function shuffle(arr){
+ function shuffle(arr){
   
   let currentIndex = arr.length;
   let temporaryValue, randomIndex;
@@ -36,17 +36,11 @@ function startQuiz(){
 
 //Generate question, a callback function for nextQuestion().
 function generateQuestionHtml(number){
-  //Declare variables.
   let questionData, answerHtml, totalHtml;
-  //feed the question object into a variable
   questionData = morbidQuestions[number];
-  //pushes correct answer onto answers array
   questionData.answers.push(questionData.correctAnswer);
-  //shuffles the array
   shuffle(questionData.answers);
-  //creates html string from answers array.
   answerHtml = generateAnswerHtml(questionData.answers);
-  //generates html
   totalHtml = `
   <section class="question">
       <p class="questionText">${questionData.question}</p>
@@ -56,10 +50,10 @@ function generateQuestionHtml(number){
   </section>
   `;
   return totalHtml;
-}
+ }
 
+//Write html string for each answer
 function generateAnswerHtml(answerArr){
-  //Write html string for each answer.
   let answers;
   answerArr.map((answer )=> answers += `
   <li>${answer}</li>
@@ -71,48 +65,67 @@ function generateAnswerHtml(answerArr){
 function nextQuestion(){
   let question = generateQuestionHtml(questionNum);
   $('main').append(question);
-  ++questionNum;
+  questionNum++;
   return question;
-  console.log(questionNum);
 }
-
-$('nextButton').click(event => {
+  $('nextButton').on('click', function(event){
   nextQuestion();
-});
+  renderResults();
+  resetQuestion();
+  $('.nextQuestion').hide();
+  $('.submitAnswer').show();
+})
+ 
 
-//check if answer is correct/incorrect
-function userAnswerCorrect(){
-  
+// submit selected answer
+function submitAnswer() {
+  $('.submitAnswer').click(function(event) {
+    event.preventDefault();
+    evaluateUserAnswers();
+    $('.nextQuestion').show();
+    $('.submitAnswer').hide();
+  });
 }
+//check if answer is correct/incorrect, display correct answer and updated score
+let userScore = {
+  correct: 0,
+  incorrect: 0,
+};
 
-function userAnswerIncorrect(){
+function evaluateUserAnswers() {
+  if (morbidQuestions[questionNum].correctAnswer) {
+    userScore.correct++;
+    $('.feedbackCorrect').hide(); 
+  } else {
+    userScore.incorrect++;
+    getCorrectAnswer();
+    $('.feedbackIncorrect').hide();
+    $('.historyNonfan').hide(); 
+  }
+  $('.resultsCounter').html(`<p>Correct: ${userScore.correct} | Incorrect: ${userScore.incorrect}</p>`);
+}  
 
-}
 
-//update score
-function updateScore(){
-  let score = 0;
-
-}
-
-//generate feedback
-function userFeedbackCorrectAnswer(){
-
-}
-
-function userFeedbackIncorrectAnswer(){
-
-}
-
-//render result
+//final page with the final score 
 function renderResults(){
+  $('.submitAnswer').show(); 
+  $('.finalPage').hide(); 
+  $('.questionPage').show(); 
+  let finalScoreText = `<h3>You answered ${userScore.correct} out of 6 questions correctly!</h3>`;
+  $('.finalCorrect').append(finalScoreText);
 
 }
 
-//restart quiz
-function restartQuiz(){
-
+//restart quiz, user clicks back to the home page 
+function restartQuiz() {
+  $('.restart').click(function() {
+    location.reload();
+  });
 }
 
 $(startQuiz());
+$(generateQuestionHtml());
+$(submitAnswer());
+$(nextQuestion());
+$(restartQuiz());
 

@@ -11,17 +11,45 @@
 <body>
     <header role="banner">
         <h1>Morbid History Trivia</h1>
-        <button type="button" class="resetButton">Reset</button>
     </header>
 
     <main>
-        <section class="quizAbout">
+        <section class='quizAbout'>
             <p>Are you a master of the sordid and terrible? Test your knowledge of sick, sad world history with this deadly 6-part quiz.</p>
         </section>
-        <section class="quizStart">
+
+        <section class='quizStart'>
             <h2>Start Quiz</h2>
-            <button type="button" class="startButton">Start Quiz</button>
+            <button type='button' class='startButton'>Start Quiz</button>
         </section>
+
+        <section class='questionPage hidden'>
+
+            <form  class='historyForm' method='get'>
+                <fieldset name='questionSet'>
+                    <div class='historyQuestion'></div>
+                    <div class='historyAnswers' role='radiogroup'></div>
+                    <button type='button' class='submitAnswer'>Check Answer</button>
+                </fieldset>
+            </form>
+
+            <button type='button' class='nextQuestion'>Next</button>
+            <div class='feedbackCorrect hidden'>
+                <h3>Correct! You know your history</h3><br>
+                <img class='historyBuff' src='https://i.pinimg.com/originals/16/b2/1e/16b21e5fb5184b9240095e5cceb22231.jpg' alt='happy lincoln'></div>
+                <div class='feedbackIncorrect hidden'><br></div>
+                <img class='historyNonfan hidden' src='https://nationalpostcom.files.wordpress.com/2017/02/wp0211_sad_lincoln_web2.png' alt='sad lincoln'>
+                <div class='resultsCounter'></div>
+            </section>
+
+        <section class='finalPage hidden'>
+            <h1>How is your History?</h1>
+            <div class='finalCorrect'><br></div>
+            <div>
+            <img class='finalPageImg' src='https://www.factinate.com/wp-content/uploads/2018/07/henryviii-1.png' alt='king henry and wives'><br>
+            <p class='backToPage'>Go back in time?</p></div>
+          </section>
+
     </main>
 
     <footer role="contentinfo">
@@ -30,6 +58,7 @@
                 <li>Score: <span class="questionScore">0</span></li>
                 <li>Question Number: <span class="questionNumber">0</span>/6</li>
             </ul>
+            <button type='button' class='restart'>Try Again</button>
         </section>
     </footer>
 
