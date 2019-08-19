@@ -41,6 +41,6 @@ header {
     display: none;
 }
 
-.answer-selector:checked {
-    background-color: green;
+.selected {
+    background-color: rgb(226, 231, 148);
 }

@@ -40,7 +40,7 @@ function startQuiz(){
 }
 
 //Generate question, a callback function for nextQuestion().
-function generateQuestionHtml(number){
+function renderQuestion(number){
   //Declare variables.
   let questionData, answerHtml, totalHtml;
   //feed the question object into a variable
@@ -50,17 +50,17 @@ function generateQuestionHtml(number){
   //shuffles the array
   shuffle(questionData.answers);
   //creates html string from answers array.
-  answerHtml = generateAnswerHtml(questionData.answers);
+  answerHtml = renderAnswers(questionData.answers);
   //generates html
   totalHtml = `
   <section class="question">
       <p class="questionText">${questionData.question}</p>
   </section>
   <section class="answers">
-    <form class='historyForm'>
-      <fieldset name='answerSet'>
+    <form class="historyForm" id="answerForm">
+      <fieldset name="answerSet">
       ${answerHtml}
-      <button type='button' class='submitAnswer' disabled> Check Answer </button>
+      <button type="submit" form="answerForm" class="submitAnswer" disabled> Check Answer </button>
       </fieldset>
     </form>
   </section>
@@ -68,13 +68,13 @@ function generateQuestionHtml(number){
   return totalHtml;
 }
 
-function generateAnswerHtml(answerArr){
+function renderAnswers(answerArr){
   //Write html string for each answer to feed into questionHtml.
   let answers = '';
   let i = 1;
   answerArr.map( (answer) => {
     answers += `
-        <input type='radio' name='option' class='answer-selector' id='answer${i}' value='${answer}'><label for='answer${i}'>${answer}</label><br/>
+        <input type="radio" name="option" class="answer-selector" id="answer${i}" value="${answer}"><label for="answer${i}">${answer}</label><br/>
     `;
     i++;
   }).join();
@@ -83,10 +83,19 @@ function generateAnswerHtml(answerArr){
 
 // restore submit button after disabling it for next questions
 function submitReady() {
-  $('input[name=option]').on('click', function(event) {
-    $('input[name=option]:checked').addClass('selected');
+  $('input[name="option"]').on('click', function() {
+    //Removes 'selected' class if another label had it already.
+    if ($('label').hasClass('selected')) {$('label').removeAttr('class')};
+    //Retrieves the id for the checked attribute.
+    let selectedID = $('input[name="option"]:checked').attr('id');
+    //Retrieves the label given the checked input's id.
+    let answerSelect = `label[for=${selectedID}]`;
+    //Adds 'selected' class to label.
+    $(answerSelect).addClass('selected');
+    //Enables submit button.
     $('.submitAnswer').removeAttr('disabled');
-    console.log('foo');
+    //Listens for submission.
+    submitAnswer();
   });
 }
 
@@ -97,11 +106,12 @@ function nextQuestion(){
   //If not last question, get next question; else render results.
   if (questionNum < morbidQuestions.length - 1) {
     //Generate new question html based on questionNum.
-    let question = generateQuestionHtml(questionNum);
+    let question = renderQuestion(questionNum);
     //Append to main element.
     $('main').html(question);
     //Increment questionNum so it calls next question.
     ++questionNum;
+    submitReady();
     return question;
   } else {
     $('main').html('<h3>renderResults() content will go here</h3>');
@@ -112,39 +122,46 @@ function nextQuestion(){
 
 // submit selected answer
 function submitAnswer() {
-  let userAnswer = $('input[name="option"]:checked').val();
-  $('.submitAnswer').click(function(event) {
+  $('.historyForm').submit(function(event) {
+    let userAnswer = $('input[name="option"]:checked').val();
     event.preventDefault();
-    evaluateUserAnswers();
-    $('.nextQuestion').show();    
+    evaluateUserAnswers(userAnswer);
+    let nextButton = '<button type=\'button\' class="nextButton">Next Question</button>';
+    $('fieldset[name="answerSet"]').append(nextButton);    
     $('.submitAnswer').remove();
   });
 }
 
 $('nextButton').click(event => {
-  $(main).html(nextQuestion);
+  nextQuestion();
 });
 
 // //check if answer is correct/incorrect, display correct answer and updated score
 
-function evaluateUserAnswers() {
-  let correctAnswer = morbidQuestions[questionNum].correctAnswer;
-  if (correctAnswer === userAnswer) {
+function evaluateUserAnswers(answer) {
+  let questionData = morbidQuestions[questionNum];
+  console.log(questionData);
+  let correctAnswer = questionData.correctAnswer;
+  let postScript = questionData.postScript;
+  if (correctAnswer === answer) {
     userScore.correct++;
-    $('.feedbackCorrect').hide(); 
+    // $('.feedbackCorrect').hide(); 
   } else {
     userScore.incorrect++;
-    getCorrectAnswer();
-    $('.feedbackIncorrect').hide();
-    $('.historyNonfan').hide(); 
+    $('main').append('THIS ANSWER WAS WRONG');
+    // showCorrectAnswer();
+    // $('.feedbackIncorrect').hide();
+    // $('.historyNonfan').hide(); 
   }
+  $('main').append(`
+  <p class="postScript">${postScript}</p>
+  `);
   $('.resultsCounter').html(`<p>Correct: ${userScore.correct} | Incorrect: ${userScore.incorrect}</p>`);
 }  
 
 // //update score
-// function updateScore(){
-
-// }
+function updateScore(){
+};
 
 // //generate feedback
 // function userFeedbackCorrectAnswer(){
@@ -163,7 +180,10 @@ function evaluateUserAnswers() {
 //restart quiz, user clicks back to the home page 
 function restartQuiz() {
   $('.resetButton').click( () => {
+    //Resets attached quizStart elements.
     $('main').html(quizStart);
+    //Resets score & question number to default.
+    questionNum = 0;
     userScore = {
       correct: 0,
       incorrect: 0,
@@ -171,7 +191,7 @@ function restartQuiz() {
   });
 }
 
+//Listeners
 $(startQuiz());
 $(restartQuiz());
-$(submitReady());
-
+$(updateScore());
