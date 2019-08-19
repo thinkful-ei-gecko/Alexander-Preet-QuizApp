@@ -8,6 +8,13 @@ let userScore = {
 };
 let quizStart = '';
 
+//update score
+function updateUserData(){
+  $('#correctScore').html(`Correct: ${userScore.correct}`);
+  $('#incorrectScore').html(`Incorrect: ${userScore.incorrect}</li>`);
+  $('#question-number').html(`Question: ${questionNum + 1} of 6`);
+};
+
 /* Shuffles an array based on Fisher-Yates algorithm:
 * https://gomakethings.com/how-to-shuffle-an-array-with-vanilla-js/
 * It iterates from the last to first item in the array,
@@ -31,10 +38,18 @@ function shuffle(arr){
   return arr;
 }
 
-//Start quiz, set questionNum, retrieve first question.
+//Start quiz, update layout for questions and scoring, retrieve first question.
 function startQuiz(){
   $('.startButton').on('click', (event => {
     quizStart = $('.quizStart, .quizAbout').detach();
+    $('footer').append(`
+      <section id= "user-data">
+        <span id="correctScore"></span>
+        <span id="incorrectScore"></span>
+      </section>
+        <section id= "question-number">
+      </section>
+    `);
     nextQuestion(questionNum);
   }));
 }
@@ -101,18 +116,17 @@ function submitReady() {
 
 
 //next question
-function nextQuestion(){
-  //Remove the current question.
+function nextQuestion(number){
   //If not last question, get next question; else render results.
-  if (questionNum < morbidQuestions.length - 1) {
+  if (number <= morbidQuestions.length - 1) {
     //Generate new question html based on questionNum.
-    let question = renderQuestion(questionNum);
+    let question = renderQuestion(number);
     //Append to main element.
     $('main').html(question);
-    //Increment questionNum so it calls next question.
-    ++questionNum;
+    //Update user score and question number.
+    updateUserData();
+    //Listen for submit.
     submitReady();
-    return question;
   } else {
     $('main').html('<h3>renderResults() content will go here</h3>');
   }
@@ -126,53 +140,55 @@ function submitAnswer() {
     let userAnswer = $('input[name="option"]:checked').val();
     event.preventDefault();
     evaluateUserAnswers(userAnswer);
-    let nextButton = '<button type=\'button\' class="nextButton">Next Question</button>';
-    $('fieldset[name="answerSet"]').append(nextButton);    
-    $('.submitAnswer').remove();
+    let nextButton = '<button type="button" id="nextButton">Next Question</button>';
+    $('main').append(nextButton);    
+    $('.submitAnswer').attr('disabled', true);
+    $('input[name="option"]').attr('disabled', true);
+    //Listen for next button click.
+    nextButtonListen();
+    
   });
 }
 
-$('nextButton').click(event => {
-  nextQuestion();
-});
+function nextButtonListen() {
+  $('#nextButton').on('click', function() {
+    //Increment questionNum and calls next question.
+    ++questionNum;
+    nextQuestion(questionNum);
+    $('#nextButton').remove();
+  });
+}
 
 // //check if answer is correct/incorrect, display correct answer and updated score
 
 function evaluateUserAnswers(answer) {
   let questionData = morbidQuestions[questionNum];
-  console.log(questionData);
   let correctAnswer = questionData.correctAnswer;
   let postScript = questionData.postScript;
   if (correctAnswer === answer) {
     userScore.correct++;
-    // $('.feedbackCorrect').hide(); 
+    userFeedbackCorrectAnswer(); 
   } else {
     userScore.incorrect++;
-    $('main').append('THIS ANSWER WAS WRONG');
-    // showCorrectAnswer();
-    // $('.feedbackIncorrect').hide();
-    // $('.historyNonfan').hide(); 
+    userFeedbackIncorrectAnswer();
   }
   $('main').append(`
   <p class="postScript">${postScript}</p>
   `);
-  $('.resultsCounter').html(`<p>Correct: ${userScore.correct} | Incorrect: ${userScore.incorrect}</p>`);
+  updateUserData();
 }  
 
-// //update score
-function updateScore(){
-};
+//generate feedback
+function userFeedbackCorrectAnswer(){
+  $('main').append('THIS ANSWER WAS CORRECT');
+}
 
-// //generate feedback
-// function userFeedbackCorrectAnswer(){
+function userFeedbackIncorrectAnswer(){
+  $('main').append('THIS ANSWER WAS WRONG');
+}
 
-// }
+/* ENDING THE QUIZ */
 
-// function userFeedbackIncorrectAnswer(){
-
-// }
-
-// //render result
 // function renderResults(){
 
 // }
@@ -180,18 +196,20 @@ function updateScore(){
 //restart quiz, user clicks back to the home page 
 function restartQuiz() {
   $('.resetButton').click( () => {
-    //Resets attached quizStart elements.
-    $('main').html(quizStart);
-    //Resets score & question number to default.
-    questionNum = 0;
-    userScore = {
-      correct: 0,
-      incorrect: 0,
-    };
+    if (quizStart !== '') {
+      //Resets attached quizStart elements.
+      $('main').html(quizStart);
+      //Resets score & question number to default.
+      questionNum = 0;
+      userScore = {
+        correct: 0,
+        incorrect: 0,
+      };
+      $('#user-data, #question-number').remove();
+    }
   });
 }
 
 //Listeners
 $(startQuiz());
 $(restartQuiz());
-$(updateScore());

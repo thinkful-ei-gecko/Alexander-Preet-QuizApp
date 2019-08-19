@@ -28,7 +28,7 @@ const morbidQuestions = [
       'A terrible breakout on most of his body from a painful, lifelong skin condition, exacerbated by a stab wound.',
       'An arrow injury to the knee, which prevented him from being an adventurer like you.'
     ],
-    postScript: 'When the bandages were removed from his head, he was said to have screamed in agony until the guillotine blade fell.'
+    postScript: 'When the bandages were removed from his jaw to help his head fit in the guillotine, he was said to have screamed in agony until the blade fell.'
   },
 
   { 
@@ -40,7 +40,7 @@ const morbidQuestions = [
       'A hidden room under his apartment connected to a long chute that led to the basement.',
       'A cellar with a crematorium, where Holmes dismembered his victims and sold their body parts.'
     ],
-    postScript: 'He started to build a hotel as an addition during the World\'s Fair, but jilted furniture suppliers helped publish an exposé after seeing the suspicious rooms. The whole thing was later destroyed by a fire.'
+    postScript: 'Although he never built a tunnel, he started to build a hotel as an addition during the World\'s Fair, but jilted furniture suppliers helped publish an exposé after seeing the suspicious rooms. The whole thing was later destroyed by a fire.'
   },
 
   { 
