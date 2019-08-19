@@ -1,12 +1,7 @@
 'use strict';
 
 //This should probably be in a function later.
-let questionNum = 0;
-let userScore = {
-  correct: 0,
-  incorrect: 0,
-};
-let quizStart = '';
+
 
 //update score
 function updateUserData(){
@@ -111,7 +106,7 @@ function submitReady() {
     $('.submitAnswer').removeAttr('disabled');
   });
   //Listens for submission.
-  submitAnswer();
+  submitAnswer(userScore);
 }
 
 
@@ -128,7 +123,7 @@ function nextQuestion(number){
     //Listen for submit.
     submitReady();
   } else {
-    $('main').html('<h3>renderResults() content will go here</h3>');
+    
   }
 }
 
@@ -156,6 +151,12 @@ function nextButtonListen() {
     ++questionNum;
     nextQuestion(questionNum);
     $('#nextButton').remove();
+    if (questionNum >= 5) {
+      $('.question').remove();
+      $('main').append('<button id="nextButton"> Final Results </button>');
+      $('#nextButton').remove();
+      renderResults(userScore, assessment);
+    }
   });
 }
 
@@ -189,9 +190,26 @@ function userFeedbackIncorrectAnswer(){
 
 /* ENDING THE QUIZ */
 
-// function renderResults(){
-
-// }
+//prints results html
+function renderResults(score, assessmentArr){
+  let resultGrade;
+  switch (score.correct) {
+  case (score.correct <= 2):
+    resultGrade = assessmentArr[0];
+    break;
+  case (score.correct <= 4):
+    resultGrade = assessmentArr[1];
+    break;
+  case (score.correct <= 6):
+    resultGrade = assessmentArr[2];
+    break;
+  }
+  let resultHtml = `
+    Your Final Grade is ${resultGrade};
+  `;
+  console.log('Fish');
+  return resultHtml;
+}
 
 //restart quiz, user clicks back to the home page 
 function restartQuiz() {

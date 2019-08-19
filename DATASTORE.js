@@ -8,6 +8,13 @@
 *
 */
 
+let questionNum = 0;
+let userScore = {
+  correct: 0,
+  incorrect: 0,
+};
+let quizStart = '';
+
 /**
 * @type {Array} An array that holds a number of objects, which in turn define the properties of each question.
 * @constant
