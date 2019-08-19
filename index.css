@@ -1,17 +1,105 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 1.15em;
+    background: url('/images/noise_lines.png');
+}
+
+header {
+    padding: 1em;
+    border-bottom: 1px solid;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin: 1em;
+    width: 90%;
+}
+
+footer {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 1em;
+    background: url('/images/dirty_old_shirt.png') rgb(184, 184, 184);
+    color: #fff;
+    font-size: 2em;
+}
+
+img {
+    max-width: 250px;
+}
+
+/* Tablet */
+@media screen and (min-width: 321px) and (max-width: 769px){
+    main {
+        max-width: 400px;
+    }
+}
+
+/* Desktop */
+@media screen and (min-width: 770px) and (max-width: 1023px){
+    main {
+        max-width: 800px;
+    }
+}
+
+fieldset {
+    border: 0;
+}
+
+input {
+    margin-right: .5em;
+}
+
+label {
+    line-height: 1.5em;
+}
+
+button {
+    height: 40px;
+    padding: .5em;
+    background: rgb(165, 165, 165);
+    border-radius: 15px;
+    border: 1px solid rgb(51, 21, 53);
+}
+
+h1 {}
+h2 {}
+h3 {}
+
+p {}
+
+
 /* Resets the quiz */
-.resetButton {}
+.resetButton {
+
+}
 
 /* Copy w/o questions in main */
-.quizAbout{}
+.quizAbout, .quizStart, .quizResults {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
 .quizStart{}
 .quizResults{}
 
-
 .startButton{}
 
+.score {}
+
 /* In footer, span containing dynamic numbers. */
-.questionScore{}
-.questionNumber{}
+.questionScore {}
+.questionNumber {}
 
 .question {}
 .questionText {}
@@ -22,5 +110,31 @@
 
 /* These all replace each other in the DOM when progressing through questions*/
 .submitButton {}
+
+.submitAnswer {
+    margin-top: 1em;
+}
 .nextButton{}
 .endButton{}
+
+.hidden {
+    display: none;
+}
+
+.selected {
+    background-color: rgb(226, 231, 148);
+}
+.correct {
+    background-color: rgb(113, 156, 113);
+}
+.incorrect {
+    background-color: rgb(180, 88, 88);
+}
+
+.questionText>br {
+    line-height: 2em;
+}
+
+#correctScore::after {
+    content: " |"
+}
