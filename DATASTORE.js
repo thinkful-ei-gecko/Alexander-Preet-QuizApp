@@ -91,3 +91,18 @@ const morbidQuestions = [
     postScript: 'Vidocq didn\'t successfully forge release documents for himself, but he DID do it to help out a peasant who had been imprisoned for stealing grain, which earned him an eight-year sentence. He later got a provisional pardon for this.'
   }
 ];
+
+let assessment = [
+  {
+    grade: "c",
+    assessmentText: 'You are minimally morbid.'
+  },
+  {
+    grade: "b",
+    assessmentText: 'You are mostly morbid.'
+  },
+  {
+    grade: "a",
+    assessmentText: 'You are maximally morbid.'
+  },
+];
