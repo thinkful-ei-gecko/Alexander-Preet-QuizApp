@@ -109,9 +109,9 @@ function submitReady() {
     $(answerSelect).addClass('selected');
     //Enables submit button.
     $('.submitAnswer').removeAttr('disabled');
-    //Listens for submission.
-    submitAnswer();
   });
+  //Listens for submission.
+  submitAnswer();
 }
 
 
@@ -136,9 +136,9 @@ function nextQuestion(number){
 
 // submit selected answer
 function submitAnswer() {
-  $('.historyForm').submit(function(event) {
-    let userAnswer = $('input[name="option"]:checked').val();
+  $('.submitAnswer').click(function(event) {
     event.preventDefault();
+    let userAnswer = $('input[name=option]:checked').val();
     evaluateUserAnswers(userAnswer);
     let nextButton = '<button type="button" id="nextButton">Next Question</button>';
     $('main').append(nextButton);    
