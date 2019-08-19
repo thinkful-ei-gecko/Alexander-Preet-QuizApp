@@ -5,7 +5,7 @@
 body {
     font-family: 'Lexend Deca', sans-serif;
     font-size: 1.15em;
-    background: url('/images/noise_lines.png');
+    background: url('./images/noise_lines.png');
 }
 
 header {
@@ -28,7 +28,7 @@ footer {
     flex-flow: column nowrap;
     align-items: center;
     padding: 1em;
-    background: url('/images/dirty_old_shirt.png') rgb(184, 184, 184);
+    background: url('./images/dirty_old_shirt.png') rgb(184, 184, 184);
     color: #fff;
 }
 

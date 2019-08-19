@@ -202,7 +202,7 @@ function renderResults(score, assessmentObj){
   if (score.correct <= 2){
     $('main').html(`
     <section class="quizResults">
-      <img src="/images/minimally.png">
+      <img src="./images/minimally.png">
       <h3>You are minimally morbid.</h3>
     </section>
     `);
@@ -210,7 +210,7 @@ function renderResults(score, assessmentObj){
   else if (score.corrent > 2 && score.correct <= 4){
     $('main').html(`
     <section class="quizResults">
-      <img src="/images/moderately.png">
+      <img src="./images/moderately.png">
       <h3>You are moderately morbid.</h3>
     </section>
     `);
@@ -218,7 +218,7 @@ function renderResults(score, assessmentObj){
   else {
     $('main').html(`
     <section class="quizResults">
-      <img src="/images/maximally.png">
+      <img src="./images/maximally.png">
       <h3>You are maximally morbid.</h3>
     </section>
     `);
