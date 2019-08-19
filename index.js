@@ -36,7 +36,7 @@ function shuffle(arr){
 //Start quiz, update layout for questions and scoring, retrieve first question.
 function startQuiz(){
   $('.startButton').on('click', (event => {
-    quizStart = $('.quizStart, .quizAbout').detach();
+    quizStart = $('.quizStart').detach();
     $('footer').append(`
       <section id= "user-data">
         <span id="correctScore"></span>
@@ -198,16 +198,16 @@ function userFeedbackIncorrectAnswer(value){
 /* ENDING THE QUIZ */
 
 //prints results html
- function renderResults(score){
-   if (score.correct <=2){
-     $('main').html(`<section class="quizResults"><h3>You are minimally morbid.</h3></section>`)
-   }
-   else if (score.corrent > 2 && score.correct <=4){
-     $('main').html(`<section class="quizResults"><h3>You are mostly morbid.</h3></section>`)
-   }
-   else {
-     $('main').html(`<section class="quizResults"><h3>You are maximally morbid.</h3></section>`)
-   }
+function renderResults(score){
+  if (score.correct <=2){
+    $('main').html(`<section class="quizResults"><h3>You are minimally morbid.</h3></section>`)
+  }
+  else if (score.corrent > 2 && score.correct <=4){
+    $('main').html(`<section class="quizResults"><h3>You are mostly morbid.</h3></section>`)
+  }
+  else {
+    $('main').html(`<section class="quizResults"><h3>You are maximally morbid.</h3></section>`)
+  }
 }
   
 
