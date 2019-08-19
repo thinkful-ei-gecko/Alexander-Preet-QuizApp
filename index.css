@@ -40,3 +40,7 @@ header {
 .hidden {
     display: none;
 }
+
+.answer-selector:checked {
+    background-color: green;
+}
