@@ -194,25 +194,38 @@ function userFeedbackIncorrectAnswer(){
 /* ENDING THE QUIZ */
 
 //prints results html
-function renderResults(score, assessmentArr){
-  let resultGrade;
-  switch (score.correct) {
-  case (score.correct <= 2):
-    resultGrade = assessmentArr[0];
-    break;
-  case (score.correct <= 4):
-    resultGrade = assessmentArr[1];
-    break;
-  case (score.correct <= 6):
-    resultGrade = assessmentArr[2];
-    break;
-  }
-  let resultHtml = `
-    Your Final Grade is ${resultGrade};
-  `;
-  console.log('Fish');
-  return resultHtml;
+// function renderResults(score, assessment){
+//   let resultGrade;
+//   switch (score.correct) {
+//   case (score.correct <= 2):
+//     resultGrade = assessment[0];
+//     break;
+//   case (score.correct <= 4):
+//     resultGrade = assessment[1];
+//     break;
+//   case (score.correct <= 6):
+//     resultGrade = assessment[2];
+//     break;
+//   }
+//   let resultHtml = `
+//     Your Final Grade is ${resultGrade};
+//   `;
+//   return resultHtml;
+// }
+
+ function renderResults(score){
+   if (score.correct <=2){
+     $('main').html(`<h3>You are minimally morbid.</h3>`)
+   }
+   else if (score.corrent > 2 && score.correct <=4){
+     $('main').html(`<h3>You are mostly morbid.</h3>`)
+   }
+   else {
+     $('main').html(`<h3>You are maximally morbid.</h3>`)
+   }
 }
+  
+
 
 //restart quiz, user clicks back to the home page 
 function restartQuiz() {

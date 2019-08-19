@@ -2,10 +2,57 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 1.15em;
+    background: url('/images/noise_lines.png');
+}
+
 header {
+    padding: 1em;
     border-bottom: 1px solid;
     display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
+
+main {
+    margin: 1em;
+    width: 90%;
+}
+
+footer {
+    padding: 1em;
+    background: url('/images/dirty_old_shirt.png') rgb(184, 184, 184);
+    color: #fff;
+}
+
+fieldset {
+    border: 0;
+}
+
+input {
+    margin-right: .5em;
+}
+
+label {
+    line-height: 1.5em;
+}
+
+button {
+    height: 40px;
+    padding: .5em;
+    background: rgb(165, 165, 165);
+    border-radius: 15px;
+    border: 1px solid rgb(51, 21, 53);
+}
+
+h1 {}
+h2 {}
+h3 {}
+
+p {}
+
 
 /* Resets the quiz */
 .resetButton {
@@ -13,7 +60,11 @@ header {
 }
 
 /* Copy w/o questions in main */
-.quizAbout{}
+.quizAbout, .quizStart {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
 .quizStart{}
 .quizResults{}
 
@@ -34,6 +85,9 @@ header {
 
 /* These all replace each other in the DOM when progressing through questions*/
 .submitButton {}
+.submitAnswer {
+    margin-top: 1em;
+}
 .nextButton{}
 .endButton{}
 
@@ -43,4 +97,10 @@ header {
 
 .selected {
     background-color: rgb(226, 231, 148);
+}
+.correct {
+    background-color: rgb(113, 156, 113);
+}
+.incorrect {
+    background-color: rgb(180, 88, 88);
 }
