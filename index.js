@@ -65,14 +65,14 @@ function renderQuestion(number){
   answerHtml = renderAnswers(questionData.answers);
   //generates html
   totalHtml = `
-  <section class="question">
+  <section class="question" aria-live="polite">
       <p class="questionText">${questionData.question}</p>
   </section>
-  <section class="answers">
+  <section class="answers" aria-live="polite">
     <form class="historyForm" id="answerForm">
-      <fieldset name="answerSet">
-      ${answerHtml}
-      <button type="submit" form="answerForm" class="submitAnswer" disabled> Check Answer </button>
+      <fieldset>
+       ${answerHtml}
+        <button type="submit" class="submitAnswer" disabled> Check Answer </button>
       </fieldset>
     </form>
   </section>
@@ -198,25 +198,6 @@ function userFeedbackIncorrectAnswer(value){
 /* ENDING THE QUIZ */
 
 //prints results html
-// function renderResults(score, assessment){
-//   let resultGrade;
-//   switch (score.correct) {
-//   case (score.correct <= 2):
-//     resultGrade = assessment[0];
-//     break;
-//   case (score.correct <= 4):
-//     resultGrade = assessment[1];
-//     break;
-//   case (score.correct <= 6):
-//     resultGrade = assessment[2];
-//     break;
-//   }
-//   let resultHtml = `
-//     Your Final Grade is ${resultGrade};
-//   `;
-//   return resultHtml;
-// }
-
  function renderResults(score){
    if (score.correct <=2){
      $('main').html(`<section class="quizResults"><h3>You are minimally morbid.</h3></section>`)
