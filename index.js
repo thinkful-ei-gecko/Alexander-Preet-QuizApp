@@ -186,13 +186,13 @@ function evaluateUserAnswers(answer) {
 //generate feedback
 function userFeedbackCorrectAnswer(){
   $('main').append('<h2>THIS ANSWER WAS CORRECT</h2>');
-  $('.selected').addClass('correct').removeClass('selected');
+  $('.selected').addClass('correct').removeClass('selected').prepend('CORRECT - ');
 }
 
 function userFeedbackIncorrectAnswer(value){
   $('main').append('<h2>THIS ANSWER WAS WRONG</h2>');
-  $('.selected').addClass('incorrect');
-  $(value).addClass('correct');
+  $('.selected').addClass('incorrect').prepend('INCORRECT - ');
+  $(value).addClass('correct').prepend('CORRECT - ');
 }
 
 /* ENDING THE QUIZ */
@@ -219,13 +219,13 @@ function userFeedbackIncorrectAnswer(value){
 
  function renderResults(score){
    if (score.correct <=2){
-     $('main').html(`<h3>You are minimally morbid.</h3>`)
+     $('main').html(`<section class="quizResults"><h3>You are minimally morbid.</h3></section>`)
    }
    else if (score.corrent > 2 && score.correct <=4){
-     $('main').html(`<h3>You are mostly morbid.</h3>`)
+     $('main').html(`<section class="quizResults"><h3>You are mostly morbid.</h3></section>`)
    }
    else {
-     $('main').html(`<h3>You are maximally morbid.</h3>`)
+     $('main').html(`<section class="quizResults"><h3>You are maximally morbid.</h3></section>`)
    }
 }
   
