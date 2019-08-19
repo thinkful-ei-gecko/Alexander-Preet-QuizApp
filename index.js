@@ -145,7 +145,6 @@ function submitAnswer() {
     $('input[name="option"]').attr('disabled', true);
     //Listen for next button click.
     nextButtonListen();
-    
   });
 }
 
@@ -169,12 +168,14 @@ function evaluateUserAnswers(answer) {
   let questionData = morbidQuestions[questionNum];
   let correctAnswer = questionData.correctAnswer;
   let postScript = questionData.postScript;
+  let correctValue = `label:contains(${correctAnswer})`;
+  console.log(correctValue);
   if (correctAnswer === answer) {
     userScore.correct++;
-    userFeedbackCorrectAnswer(); 
+    userFeedbackCorrectAnswer();
   } else {
     userScore.incorrect++;
-    userFeedbackIncorrectAnswer();
+    userFeedbackIncorrectAnswer(correctValue);
   }
   $('main').append(`
   <p class="postScript">${postScript}</p>
@@ -184,11 +185,14 @@ function evaluateUserAnswers(answer) {
 
 //generate feedback
 function userFeedbackCorrectAnswer(){
-  $('main').append('THIS ANSWER WAS CORRECT');
+  $('main').append('<h2>THIS ANSWER WAS CORRECT</h2>');
+  $('.selected').addClass('correct').removeClass('selected');
 }
 
-function userFeedbackIncorrectAnswer(){
-  $('main').append('THIS ANSWER WAS WRONG');
+function userFeedbackIncorrectAnswer(value){
+  $('main').append('<h2>THIS ANSWER WAS WRONG</h2>');
+  $('.selected').addClass('incorrect');
+  $(value).addClass('correct');
 }
 
 /* ENDING THE QUIZ */
