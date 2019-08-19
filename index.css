@@ -20,8 +20,7 @@ main {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    margin: 1em;
-    width: 90%;
+    margin: 1em auto;
 }
 
 footer {
@@ -31,11 +30,24 @@ footer {
     padding: 1em;
     background: url('/images/dirty_old_shirt.png') rgb(184, 184, 184);
     color: #fff;
-    font-size: 2em;
 }
+
+footer>a, footer>*>a {
+    color: white;
+}
+
+
 
 img {
     max-width: 250px;
+}
+
+/* Mobile */
+
+@media screen and (max-width: 320px) {
+    main {
+        width: 90%;
+    }
 }
 
 /* Tablet */
@@ -46,7 +58,13 @@ img {
 }
 
 /* Desktop */
-@media screen and (min-width: 770px) and (max-width: 1023px){
+@media screen and (min-width: 770px){
+    header {
+        justify-content: left;
+    }
+    h1 {
+        margin-right: 2em;
+    }
     main {
         max-width: 800px;
     }
@@ -72,50 +90,21 @@ button {
     border: 1px solid rgb(51, 21, 53);
 }
 
-h1 {}
-h2 {}
-h3 {}
-
-p {}
-
-
-/* Resets the quiz */
-.resetButton {
-
-}
-
 /* Copy w/o questions in main */
 .quizAbout, .quizStart, .quizResults {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
 }
-.quizStart{}
-.quizResults{}
 
-.startButton{}
-
-.score {}
-
-/* In footer, span containing dynamic numbers. */
-.questionScore {}
-.questionNumber {}
-
-.question {}
-.questionText {}
-
-.answer{}
-.rightAnswer{}
-.wrongAnswer{}
-
-/* These all replace each other in the DOM when progressing through questions*/
-.submitButton {}
+#user-data, #question-number {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
 
 .submitAnswer {
     margin-top: 1em;
 }
-.nextButton{}
-.endButton{}
 
 .hidden {
     display: none;
@@ -125,10 +114,10 @@ p {}
     background-color: rgb(226, 231, 148);
 }
 .correct {
-    background-color: rgb(113, 156, 113);
+    background-color: rgb(147, 192, 147);
 }
 .incorrect {
-    background-color: rgb(180, 88, 88);
+    background-color: rgb(223, 110, 110);
 }
 
 .questionText>br {
