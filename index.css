@@ -7,12 +7,13 @@ header {
     display: flex;
 }
 
-/* Resets the quiz */
+/*
+/* Resets the quiz 
 .resetButton {
 
 }
 
-/* Copy w/o questions in main */
+ Copy w/o questions in main 
 .quizAbout{}
 .quizStart{}
 .quizResults{}
@@ -20,7 +21,7 @@ header {
 .startButton{}
 
 .score {}
-/* In footer, span containing dynamic numbers. */
+ In footer, span containing dynamic numbers. 
 .questionScore{}
 .questionNumber{}
 
@@ -32,7 +33,7 @@ header {
 .rightAnswer{}
 .wrongAnswer{}
 
-/* These all replace each other in the DOM when progressing through questions*/
+ These all replace each other in the DOM when progressing through questions
 .submitButton {}
 .nextButton{}
 .endButton{}
@@ -40,3 +41,4 @@ header {
 .hidden {
     display: none;
 }
+*/

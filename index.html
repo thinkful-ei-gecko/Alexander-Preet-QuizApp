@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Morbid History Trivia Quiz App</title>
     <meta name="description" content="Quiz on morbid history">
-    <link href="index.css" rel="stylesheet" type="text/css">
+    <!--link href="index.css" rel="stylesheet" type="text/css"-->
 </head>
 <body>
     <header role="banner">
@@ -14,42 +14,36 @@
     </header>
 
     <main>
-        <section class='quizAbout'>
-            <p>Are you a master of the sordid and terrible? Test your knowledge of sick, sad world history with this deadly 6-part quiz.</p>
-        </section>
-
-        <section class='quizStart'>
-            <h2>Start Quiz</h2>
+        <section id='startPage' class='quizStart'>
+            <h2>Are you a master of the sordid and terrible? Test your knowledge of sick, sad world history with this deadly 6-part quiz.</h2>
             <button type='button' class='startButton'>Start Quiz</button>
         </section>
 
-        <section class='questionPage hidden'>
-
+        <section id='questionSection' class='hidden questionPage'>
             <form  class='historyForm' method='get'>
                 <fieldset name='questionSet'>
                     <div class='historyQuestion'></div>
-                    <div class='historyAnswers' role='radiogroup'></div>
-                    <button type='button' class='submitAnswer'>Check Answer</button>
+                    <div class='historyAnswers' role="radio"></div>
+                    <button type='button' disabled class='hidden submitAnswer'>Check Answer</button>
                 </fieldset>
             </form>
 
-            <button type='button' class='nextQuestion'>Next</button>
+            <button type='button' class='hidden nextQuestion'>Next</button>
             <div class='feedbackCorrect hidden'>
                 <h3>Correct! You know your history</h3><br>
                 <img class='historyBuff' src='https://i.pinimg.com/originals/16/b2/1e/16b21e5fb5184b9240095e5cceb22231.jpg' alt='happy lincoln'></div>
-                <div class='feedbackIncorrect hidden'><br></div>
-                <img class='historyNonfan hidden' src='https://nationalpostcom.files.wordpress.com/2017/02/wp0211_sad_lincoln_web2.png' alt='sad lincoln'>
-                <div class='resultsCounter'></div>
+            <div class='feedbackIncorrect hidden'><br></div>
+                <img class='historyNonfan' src='https://nationalpostcom.files.wordpress.com/2017/02/wp0211_sad_lincoln_web2.png' alt='sad lincoln'>
+            <div class='resultsCounter'></div>
             </section>
 
         <section class='finalPage hidden'>
             <h1>How is your History?</h1>
             <div class='finalCorrect'><br></div>
             <div>
-            <img class='finalPageImg' src='https://www.factinate.com/wp-content/uploads/2018/07/henryviii-1.png' alt='king henry and wives'><br>
+            <img class='finalPageImg hidden' src='https://www.factinate.com/wp-content/uploads/2018/07/henryviii-1.png' alt='king henry and wives'><br>
             <p class='backToPage'>Go back in time?</p></div>
           </section>
-
     </main>
 
     <footer role="contentinfo">
