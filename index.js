@@ -26,15 +26,21 @@ let questionNum = 0;
   return arr;
 }
 
+
+
+
 //Start quiz, set questionNum, retrieve first question.
 function startQuiz(){
   $('.startButton').on('click', (event => {
     $('.quizStart, .quizAbout').remove();
-    nextQuestion(questionNum);
+    //nextQuestion(); with this call, when start is clicked it moves onto q2.
   }));
 }
 
-//generate questions into HTML, changed from original 
+
+
+
+//generate questions into HTML, changed from what was originally written
  function generateQuestionHtml(){
   const answer1 = `${morbidQuestions[questionNum].answers[0]}`;
   const answer2 = `${morbidQuestions[questionNum].answers[1]}`;
@@ -51,18 +57,23 @@ function startQuiz(){
   submitButton();
 }
 
+
+
+
 //Write html string for each answer - may need to change this portion of the code, to fit in with above. 
 function generateAnswerHtml(answerArr){
   let answers;
-  answerArr.map((answer )=> answers += `
+  answerArr.map((answer)=> answers += `
   <li>${answer}</li>
   `).join();
   return answers;
 }
 
+
+
+
 // restore submit button after disabling it for next questions
 function submitButton() {
-  
   $('input[name=option]').on('click', function(event) {
     $('.submitAnswer').removeClass('disabled').removeAttr('disabled');
   });
@@ -71,25 +82,31 @@ function submitButton() {
 
 
 
+// next question, kept original function, wrote a new one to see if it would work - needs some tweaking
 
+// function nextQuestion(){
+//   let question = generateQuestionHtml(questionNum);
+//   $('main').append(question);
+//   questionNum++;
+//   return question;
+//   generateQuestionHtml();
+//   renderResults();
+//   $('.nextQuestion').hide();
+//   $('.submitAnswer').show();
+// }
 
-
-//next question
 function nextQuestion(){
-  let question = generateQuestionHtml(questionNum);
-  $('main').append(question);
-  questionNum++;
-  return question;
+  $('.nextQuestion').on('click', function(event) {
+  if (questionNum < morbidQuestions.length-1) {
+    questionNum++;
+    generateQuestionHtml();
+  } else {
+    renderResults();
+    $('.nextQuestion').hide();
+    $('.submitAnswer').show();
+  } 
+});
 }
-  $('nextButton').on('click', function(event){
-  nextQuestion();
-  renderResults();
-  resetQuestion();
-  $('.nextQuestion').hide();
-  $('.submitAnswer').show();
-})
- 
-
 
 
 // submit selected answer
@@ -98,9 +115,10 @@ function submitAnswer() {
     event.preventDefault();
     evaluateUserAnswers();
     $('.nextQuestion').show();
-    $('.submitAnswer').hide();
+    //$('.submitAnswer').hide();
   });
 }
+
 
 
 
@@ -125,6 +143,7 @@ function evaluateUserAnswers() {
 
 
 
+
 //final page with the final score 
 function renderResults(){
   $('.submitAnswer').show(); 
@@ -137,12 +156,15 @@ function renderResults(){
 
 
 
+
 //restart quiz, user clicks back to the home page 
 function restartQuiz() {
   $('.restart').click(function() {
     location.reload();
   });
 }
+
+
 
 $(startQuiz());
 $(generateQuestionHtml());
