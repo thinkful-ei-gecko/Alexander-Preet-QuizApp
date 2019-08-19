@@ -123,23 +123,23 @@ const morbidQuestions = [
   }
 ];
 
-let assessment = [
-  {
-    grade: "c",
-    assessmentText: 'You are minimally morbid.',
-    imgSrc: '/images/mildly.png',
-    imgAlt: 'A skull bored by how minimally morbid you are.'
-  },
-  {
-    grade: "b",
-    assessmentText: 'You are moderately morbid.',
-    imgSrc: '/images/moderately.png',
-    imgAlt: 'A skull looking concerned by how moderately morbid you are.'
-  },
-  {
-    grade: "a",
-    assessmentText: 'You are maximally morbid.',
-    imgSrc: '/images/maximally.png',
-    imgAlt: 'A skull absolutely horrified at your extreme morbidity.'
-  },
-];
+// let assessment = [
+//   {
+//     grade: 2,
+//     assessmentText: 'You are minimally morbid.',
+//     imgSrc: '',
+//     imgAlt: 'A skull bored by how minimally morbid you are.'
+//   },
+//   {
+//     grade: "b",
+//     assessmentText: 'You are moderately morbid.',
+//     imgSrc: '/images/moderately.png',
+//     imgAlt: 'A skull looking concerned by how moderately morbid you are.'
+//   },
+//   {
+//     grade: "a",
+//     assessmentText: 'You are maximally morbid.',
+//     imgSrc: '/images/maximally.png',
+//     imgAlt: 'A skull absolutely horrified at your extreme morbidity.'
+//   },
+// ];
