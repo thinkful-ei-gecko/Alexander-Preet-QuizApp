@@ -56,7 +56,9 @@ function renderQuestion(number){
   //feed the question object into a variable
   questionData = morbidQuestions[number];
   //pushes correct answer onto answers array
-  questionData.answers.push(questionData.correctAnswer);
+  if (questionData.answers.length < 5){
+    questionData.answers.push(questionData.correctAnswer);
+  }
   //shuffles the array
   shuffle(questionData.answers);
   //creates html string from answers array.
@@ -122,8 +124,6 @@ function nextQuestion(number){
     updateUserData();
     //Listen for submit.
     submitReady();
-  } else {
-    
   }
 }
 
@@ -135,7 +135,11 @@ function submitAnswer() {
     event.preventDefault();
     let userAnswer = $('input[name=option]:checked').val();
     evaluateUserAnswers(userAnswer);
+    console.log(questionNum, morbidQuestions.length);
     let nextButton = '<button type="button" id="nextButton">Next Question</button>';
+    if (questionNum === morbidQuestions.length - 1) {
+      nextButton ='<button type="button" id="nextButton">Final Results</button>';
+    };
     $('main').append(nextButton);    
     $('.submitAnswer').attr('disabled', true);
     $('input[name="option"]').attr('disabled', true);
@@ -149,14 +153,13 @@ function nextButtonListen() {
   $('#nextButton').on('click', function() {
     //Increment questionNum and calls next question.
     ++questionNum;
+    if (questionNum === morbidQuestions.length) {
+      $('main').html('');
+      renderResults(userScore, assessment);
+      $('main').append('<button id="nextButton"> Final Results </button>');
+    }
     nextQuestion(questionNum);
     $('#nextButton').remove();
-    if (questionNum >= 5) {
-      $('.question').remove();
-      $('main').append('<button id="nextButton"> Final Results </button>');
-      $('#nextButton').remove();
-      renderResults(userScore, assessment);
-    }
   });
 }
 
