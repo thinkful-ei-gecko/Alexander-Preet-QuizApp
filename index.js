@@ -154,7 +154,7 @@ function nextButtonListen() {
     ++questionNum;
     if (questionNum === morbidQuestions.length) {
       $('main').html('');
-      renderResults(userScore, assessment);
+      renderResults(userScore);
       $('main').append('<button id="nextButton"> Final Results </button>');
     }
     nextQuestion(questionNum);
@@ -207,7 +207,7 @@ function renderResults(score){
     </section>
     `);
   }
-  else if (score.corrent > 2 && score.correct <= 4){
+  else if (score.correct > 2 && score.correct <= 4){
     $('main').html(`
     <section class="quizResults">
       <img src="./images/moderately.png">
@@ -224,8 +224,6 @@ function renderResults(score){
     `);
   }
 }
-  
-
 
 //restart quiz, user clicks back to the home page 
 function restartQuiz() {
