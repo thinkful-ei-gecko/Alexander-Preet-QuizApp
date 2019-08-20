@@ -198,7 +198,7 @@ function userFeedbackIncorrectAnswer(value){
 /* ENDING THE QUIZ */
 
 //prints results html
-function renderResults(score, assessmentObj){
+function renderResults(score){
   if (score.correct <= 2){
     $('main').html(`
     <section class="quizResults">
