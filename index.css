@@ -28,7 +28,7 @@ footer {
     flex-flow: column nowrap;
     align-items: center;
     padding: 1em;
-    background: url('./images/dirty_old_shirt.png') rgb(41, 41, 41);
+    background: url('./images/dirty_old_shirt.png') rgb(184, 184, 184);
     color: #fff;
 }
 

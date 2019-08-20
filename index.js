@@ -154,7 +154,7 @@ function nextButtonListen() {
     ++questionNum;
     if (questionNum === morbidQuestions.length) {
       $('main').html('');
-      renderResults(userScore, assessment);
+      renderResults(userScore);
       $('main').append('<button id="nextButton"> Final Results </button>');
     }
     nextQuestion(questionNum);
@@ -198,19 +198,19 @@ function userFeedbackIncorrectAnswer(value){
 /* ENDING THE QUIZ */
 
 //prints results html
-function renderResults(score, assessmentObj){
+function renderResults(score){
   if (score.correct <= 2){
     $('main').html(`
     <section class="quizResults">
-      <img src="/images/minimally.png">
+      <img src="./images/minimally.png" alt="A skull looking mildly dismayed at your morbidity.">
       <h3>You are minimally morbid.</h3>
     </section>
     `);
   }
-  else if (score.corrent > 2 && score.correct <= 4){
+  else if (score.correct > 2 && score.correct <= 4){
     $('main').html(`
     <section class="quizResults">
-      <img src="/images/moderately.png">
+      <img src="./images/moderately.png" alt="A skull looking shocked at your morbidity.">
       <h3>You are moderately morbid.</h3>
     </section>
     `);
@@ -218,14 +218,12 @@ function renderResults(score, assessmentObj){
   else {
     $('main').html(`
     <section class="quizResults">
-      <img src="/images/maximally.png">
+      <img src="./images/maximally.png" alt="A skull looking horrified at your morbidity.">
       <h3>You are maximally morbid.</h3>
     </section>
     `);
   }
 }
-  
-
 
 //restart quiz, user clicks back to the home page 
 function restartQuiz() {
